@@ -1,0 +1,133 @@
+// create placeholders for commonly called main properties?
+// resolve card2:content-btn with a text-btn/toggle-btn inside
+
+@charset "UTF-8";
+
+// @use 'vendors';
+// @use 'abstracts';
+// @use 'base';
+// @use 'layout';
+
+$background-color: #000000;
+$modifier-color: #D4D4D2;
+$digit-color: #1C1C1C;
+$click-effect-color: #ffffff66;
+$operator-color: #FF9500;
+$light-text: #FFFFFF;
+$dark-text: #000000;
+
+@import url('https://v1.fontapi.ir/css/SFProDisplay:200;400');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  position: relative;
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#root {
+  max-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'SF Pro Display', sans-serif;
+  background-color: $background-color;
+  color: $light-text;
+  overflow: hidden auto;
+}
+
+#calculator {
+  width: 58.8235294vmin;
+  height: 100vmin;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  .display-area {
+    width: 100%;
+    height: 25.5%;
+    margin: 5%;
+    margin-bottom: 1.6666666%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    #display {
+      text-align: end;
+      padding: 0 4%;
+      font: {
+        size: 8.8235294vmin;
+        weight: 200;
+      };
+    }
+  }
+  
+  button {
+    width: 20%;
+    height: 11.7647059%;
+    margin: 1.6666666%;
+    font-size: 4.7058824vmin;
+    background-color: $digit-color;
+    color: $light-text;
+    border-radius: 999rem;
+    letter-spacing: -0.0625rem;
+    transition: background-color .1s;
+
+    &::after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 999rem;
+      transition: background-color .1s;
+    }
+
+    &:nth-child(4n + 2) {
+      margin-left: 5%;
+    }
+
+    &.modifier {
+      background-color: $modifier-color;
+      color: $dark-text;
+    }
+
+    &.operator {
+      background-color: $operator-color;
+
+      &.active {
+        background-color: $light-text;
+        color: $operator-color;
+      }
+    }
+
+    &#zero {
+      width: 43.3333333%;
+      padding-left: 8%;
+      text-align: start;
+    }
+
+    &.clicked::after, &:active::after {
+      background-color: $click-effect-color;
+    }
+  }
+}
